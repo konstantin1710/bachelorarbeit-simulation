@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionStrings": {
+    "OLReweAbf": "data source=DEHALSQL1,1433;initial catalog=OLReweAbf;persist security info=True;user id=BIUSER;password=74dmLA2!3",
+    "LocalPostgres": "Host=localhost;Port=1896;Username=admin;Password=password;Database=db;Enlist=true;MaxPoolSize=500;IncludeErrorDetail=True;Timeout=60"
+  }
+}
