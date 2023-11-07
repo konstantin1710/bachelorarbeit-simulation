@@ -56,7 +56,7 @@ Hier sind die Artikel gespeichert. Daten müssen vor einem Simulationsdurchlauf 
 - `Height`: Höhe des Artikels
 - `FlaecheMax`: Größte Seitenfläche des Artikels
 - `FlaecheMin`: Kleinste Seitenfläche des Artikels
-- `PalletSize`: Anzahl an Artikeln, die maximale auf eine Palette passen
+- `PalletSize`: Anzahl an Artikeln, die maximal auf eine Palette passen
 - `Class`: Klasse des Artikels, verwendet für Klassenstrategie (wird am Anfang der Berechnung gesetzt)
 
 #### Lagerplaetze
@@ -83,7 +83,7 @@ Tabelle für den historischen Pickpool zur Rekonstruierung des Pickpools in der 
 
 - `PlatzId`: Id des Lagerplatzes (Referenz auf Lagerplaetze)
 - `Menge`: Stückzahl
-- `BelPosId`: Referenz auf Belegposition des Verkaufsbeleges
+- `BelPosId`: Id der Belegposition des Verkaufsbeleges
 - `BelId`: Id des Verkaufsbeleges
 - `Artikelnummer`: Id des Artikels (Referenz auf Artikel)
 - `Variante`: Variantennummer des Artikels (Referenz auf Artikel)
