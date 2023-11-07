@@ -1,8 +1,8 @@
 # Installationsanweisung
 
 1. Repository klonen
-2. Datenbank erstellen (siehe Punkt "[Aufbau der Datenbank](https://github.com/konstantin1710/bachelorarbeit-simulation/edit/main/README.md#aufbau-der-datenbank)")
-3. in Ordner "simulation" eine Datei "connectionstrings.json" nach folgendem Schema erstellen:
+2. Datenbank erstellen (siehe Punkt "[Aufbau der Datenbank](https://github.com/konstantin1710/bachelorarbeit-simulation#aufbau-der-datenbank)")
+3. In Ordner "simulation" eine Datei "connectionstrings.json" nach folgendem Schema erstellen:
 
 ```
 {
@@ -18,24 +18,24 @@ Die übrigen Einträge sind für die parallele Abarbeitung bestimmter Schleifen 
 
 # Endpunkte
 
-Die Simulation stellt mehrere Endpunkt zur Verfügung, die im Laufe der Bearbeitung der Arbeit notwendig wurden. Um die Simulation auszuführen sind folgende Endpunkte notwendig:
+Die Simulation stellt mehrere Endpunkt zur Verfügung, die im Laufe der Bearbeitung der Arbeit verwendet wurden. Um die Simulation auszuführen sind folgende Endpunkte notwendig:
 
 ### /api/article/calculate-pallet-sizes
 
 Der Endpunkt nutzt die Tabellen `artikel` und `dumps.khklagerplatzbuchungen`, um anhand von allen vergangenen Buchungen die Größe einer Palette zu berechnen. Die Ergebnisse werden im Feld `palletsize` der Tabelle `artikel` gespeichert.
-Wenn die Palettengrößen nicht vorhanden sind, muss der Endpunkt vor der Simulation einmal aufgerufen werden.
+Wenn die Palettengrößen im Datensatz nicht vorhanden sind, muss der Endpunkt vor der Simulation einmal aufgerufen werden.
 
 ### /api/simulation/simulate-picking
 
 Hier wird die eigentliche Simulation ausgeführt. Die Parameter müssen folgendermaßen gesetzt werden:
 
-- `strategy` (enum): Strategie der Einlagerung. Mögliche Werte sind: `Current` (aktuelle Strategie), `Random` (zufällige Strategie), `RandomWithPreferredGroundZone` (Strategie mit bevorzugter Bodenzone), `PreferredLowDistance` (Bevorzugt geringe Distanz), `DistanceBySalesRank` (Verkaufszahlenstrategie), `Classes` (Klassenstrategie)
-- `date` (DateTime): Datum des gewünschten Starttages der Simulation
-- `numberOfDays` (int): Anzahl an Tagen, die simuliert werden sollen
-- `betterPicklists` (bool): Gibt an, ob bessere Picklisten mit Berücksichtigung der lokalen Zusammenhänge von Lagerplätzen erstellt werden sollen
-- `numberOfClasses` (int): Anzahl der Klassen für Classes-Strategy. Optional für alle anderen Strategien, Standardwert 2
-- `exactForecast` (bool): Gibt an, ob eine perfekte Verkaufsprognose verwendet werden soll
-- `optimizedGroundzone` (bool): Nur in Verbindung mit Verkaufszahlenstrategie. Gibt an, ob die verbesserte Verteilung in die Bodenzone genutzt werden soll (Kapitel 5.5.3)
+- `Strategy` (enum): Strategie der Einlagerung. Mögliche Werte sind: `Current` (aktuelle Strategie), `Random` (zufällige Strategie), `RandomWithPreferredGroundZone` (Strategie mit bevorzugter Bodenzone), `PreferredLowDistance` (Bevorzugt geringe Distanz), `DistanceBySalesRank` (Verkaufszahlenstrategie), `Classes` (Klassenstrategie)
+- `Date` (DateTime): Datum des gewünschten Starttages der Simulation
+- `NumberOfDays` (int): Anzahl an Tagen, die simuliert werden sollen
+- `BetterPicklists` (bool): Gibt an, ob bessere Picklisten mit Berücksichtigung der lokalen Zusammenhänge von Lagerplätzen erstellt werden sollen
+- `NumberOfClasses` (int): Anzahl der Klassen für Classes-Strategy. Optional für alle anderen Strategien, Standardwert 2
+- `ExactForecast` (bool): Gibt an, ob eine perfekte Verkaufsprognose verwendet werden soll
+- `OptimizedGroundzone` (bool): Nur in Verbindung mit Verkaufszahlenstrategie. Gibt an, ob die verbesserte Verteilung in die Bodenzone genutzt werden soll (Kapitel 5.5.3)
 
 # Aufbau der Datenbank
 
@@ -54,8 +54,8 @@ Hier sind die Artikel gespeichert. Daten müssen vor einem Simulationsdurchlauf 
 - `Length`: Länge des Artikels
 - `Width`: Breite des Artikels
 - `Height`: Höhe des Artikels
-- `FlaecheMax`: größte Seitenfläche des Artikels
-- `FlaecheMin`: kleinste Seitenfläche des Artikels
+- `FlaecheMax`: Größte Seitenfläche des Artikels
+- `FlaecheMin`: Kleinste Seitenfläche des Artikels
 - `PalletSize`: Anzahl an Artikeln, die maximale auf eine Palette passen
 - `Class`: Klasse des Artikels, verwendet für Klassenstrategie (wird am Anfang der Berechnung gesetzt)
 
@@ -65,8 +65,8 @@ Hier sind die Lagerplätze gespeichert. Daten müssen vor einem Simulationsdurch
 - `PlatzId`: Id des Lagerplatzes
 - `Kurzbezeichnung`: Bezeichnung des Lagerplatzes nach Schema "<Unit>;<Gang>;<Lagerplatz>;<Ebene>"
 - `IsBodenzone`: 1 wenn der Lagerplatz in der Bodenzone liegt, sonst 0
-- `X`: x-Koordinate des Lagerplatzes
-- `Y`: y-Koordinate des Lagerplatzes
+- `X`: X-Koordinate des Lagerplatzes
+- `Y`: Y-Koordinate des Lagerplatzes
 - `Distance`: Distanz des Lagerplatzes zum Depot
 - `Class`: Klasse des Lagerplatzes, verwendet für Klassenstrategie (wird am Anfang der Berechnung gesetzt)
 
@@ -122,5 +122,5 @@ Historische Verkäufe, zur Aufstellung der benötigten Verkaufsprognosen und Ana
 - `Tag`: Tag des Verkaufs
 - `Monat`: Monat des Verkaufs
 - `Jahr`: Jahr des Verkaufs
-- `Menge`: verkaufte Menge
+- `Menge`: Verkaufte Menge
 - `Datum`: Datum des Verkaufs, Kombination aus Tag, Monat und Jahr
