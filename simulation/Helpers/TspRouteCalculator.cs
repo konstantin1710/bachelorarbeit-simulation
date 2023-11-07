@@ -10,15 +10,15 @@ namespace simulation.Helpers;
 /// </summary>
 public class TspRouteCalculator
 {
-    private static long[,] DistanceMatrix { get; } = JsonConvert.DeserializeObject<long[,]>(File.ReadAllText(@"..\..\simulator\GRO-distances.json", Encoding.UTF8))!;
-    private static IReadOnlyDictionary<string, int> HashMap { get; } = JsonConvert.DeserializeObject<IReadOnlyDictionary<string, int>>(File.ReadAllText(@"..\..\simulator\GRO-hash_map.json", Encoding.UTF8))!;
+    private static long[,] DistanceMatrix { get; } = JsonConvert.DeserializeObject<long[,]>(File.ReadAllText(@"..\distances.json", Encoding.UTF8))!;
+    private static IReadOnlyDictionary<string, int> HashMap { get; } = JsonConvert.DeserializeObject<IReadOnlyDictionary<string, int>>(File.ReadAllText(@"..\hash_map.json", Encoding.UTF8))!;
     public static ILookup<int, string> ReverseHashmap { get; } = HashMap.ToLookup(x => x.Value, x => x.Key);
 
     public static double GetRoute(Picklist picklist)
     {
         var nodes = GetNodesFromPicklists(picklist);
 
-        //Depot in GRO-48 mittig ganz unten
+        //Depot in Unit-8 mittig ganz unten
         nodes.Insert(0, 2082);
 
         var tourDistanceMatrix = new long[nodes.Count,nodes.Count];
